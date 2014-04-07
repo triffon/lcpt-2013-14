@@ -21,7 +21,6 @@ _ @ _  ⊢ [] :: [].
 V @ Γ ⊢ [ Term | Terms ]   :: [ T | Types ] :- V @ Γ ⊢ Term : T, V @ Γ ⊢ Terms :: Types.
 
 V @ _ ⊢ _ : T       :- member(T, V), !, fail.
-_ @ Γ ⊢ X : T           :- member(X : T, Γ).
 V @ Γ ⊢ λ(X,M) : S => T :- V @ [ X : S | Γ ] ⊢ M : T.
 V @ Γ ⊢ App : S         :- member(X : T, Γ),
 	               /* Ако намерим аргументи M1, M2, ..., Mn на X така че да се 
@@ -32,4 +31,5 @@ V @ Γ ⊢ App : S         :- member(X : T, Γ),
 		       [S | V] @ Γ ⊢ Terms :: Types,
 		       /* трябва да приложим X над всеки един от термовете в TermList */
 		       X $$ Terms ≡ App.
-		       
+
+Γ ⊢ M : T  :- [] @ Γ ⊢ M : T.
